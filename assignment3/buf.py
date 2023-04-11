@@ -1,6 +1,7 @@
 from fifo import Fifo
 import array
 
+
 class Buf(Fifo):
     def __init__(self, *iter, size=None):
         self.data = array.array('H')
@@ -30,7 +31,7 @@ class Buf(Fifo):
         self.head = new_head
         self.data[new_head] = value
 
-    def get_real_index(self, index):
+    def get_real_index(self, index) -> int:
         is_over, true_index = divmod(self.tail + index, self.size)
         if is_over > 1:
             raise IndexError(f'Out of bounds. Tail: {self.tail}, Head: {self.head}, True index: {true_index}, Is_over: {is_over}')
